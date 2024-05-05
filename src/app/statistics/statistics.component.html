@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Estadísticas por Modelo</h2>
+    <div class="row">
+      <div class="col-md-2" *ngFor="let model of models">
+        <div class="card">
+            <img [src]="model.imageUrl" class="card-img-top" alt="">
+            <div class="card-body">
+              <button type="button" [routerLink]="['/stats', model.name]" class="btn btn-dark"> Ver {{ model.name }}</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  
+    <h2>Estadísticas por Fuente</h2>
+    <div class="row">
+      <div class="col-md-2" *ngFor="let source of sources">
+        <div class="card">
+            <img [src]="source.imageUrl" class="card-img-top" alt="">
+            <div class="card-body">
+              <button type="button" [routerLink]="['/stats', source.name]" class="btn btn-dark"> Ver {{ source.name }}</button>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.card {
+    height: 100%;  /* Makes all cards the same height within their grid column */
+  }
+  
+.card-img-top {
+    height: 200px;  /* Adjust as necessary to fit your design needs */
+    object-fit: cover;  /* Ensures the image covers the area without stretching */
+}
+.card-img-top {
+    height: 200px;  /* Consistent height */
+    width: 100%;    /* Ensure the width always fills the card */
+    object-fit: contain;  /* Adjust based on preference */
+  }
+  
+  
+  

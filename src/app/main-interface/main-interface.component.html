@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <div class="text-center mb-4">
+      <h2>Escribe el texto a analizar</h2>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" id="textInput" rows="4" placeholder="Introduce aquí tu texto..." [(ngModel)]="inputText"></textarea>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary" (click)="analyzeText()">Analizar</button>
+    </div>
+  </div>
+  <div class="container mt-4" *ngIf="analysisResults">
+    <div class="results mt-4">
+      <h4>Resultados del Análisis:</h4>
+      <div class="card mb-3" *ngIf="analysisResults.ekmanEmotion">
+        <div class="card-body">
+          <h5 class="card-title">Emoción de Ekman</h5>
+          <p class="card-text">{{ analysisResults.ekmanEmotion }}</p>
+        </div>
+      </div>
+      <div class="card mb-3" *ngIf="analysisResults.personalityTrait">
+        <div class="card-body">
+          <h5 class="card-title">Rasgo de Personalidad</h5>
+          <p class="card-text">{{ analysisResults.personalityTrait }}</p>
+        </div>
+      </div>
+      <!-- Repite para otros resultados como sentiment, age, y gender -->
+    </div>
+  </div>
+  

@@ -1,0 +1,11 @@
+<div class="container text-center mt-5">
+  <h1 class="mb-4">Estadísticas para {{ modelName }}</h1>
+  <div class="row">
+    <ng-container *ngFor="let statType of statsTypes">
+      <div class="col-md-6 mb-5">
+        <h3 class="mb-3">{{ shownStatsTypes[statType] }}</h3>
+        <img [src]="getImageUrl(statType)" alt="{{ shownStatsTypes[statType] }} statistics for {{ modelName }}" class="img-fluid">
+      </div>
+    </ng-container>
+  </div>
+</div>

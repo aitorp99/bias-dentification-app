@@ -1,0 +1,11 @@
+.container img {
+    min-height: 350px; // Establece una altura mínima para las imágenes
+    max-height: 500px; // Establece una altura máxima para evitar que las imágenes sean demasiado grandes en pantallas grandes
+    width: auto; // Mantiene la relación de aspecto original de las imágenes
+  }
+  
+  h3 {
+    color: #333;
+    font-weight: bold;
+  }
+  
