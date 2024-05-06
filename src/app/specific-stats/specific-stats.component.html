@@ -8,4 +8,18 @@
       </div>
     </ng-container>
   </div>
+
+  <div *ngIf="modelData" class="mt-5">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title text-primary">Observaciones</h4>
+        <p class="card-text">{{ modelData.observations }}</p>
+        <h4 class="card-title text-primary">Casos de Uso</h4>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let useCase of modelData.useCases">{{ useCase }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
 </div>

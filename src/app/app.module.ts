@@ -7,13 +7,15 @@ import { MainInterfaceComponent } from './main-interface/main-interface.componen
 import { FormsModule } from '@angular/forms';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SpecificStatsComponent } from './specific-stats/specific-stats.component';
+import { SourceStatsComponent } from './source-stats/source-stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainInterfaceComponent,
     StatisticsComponent,
-    SpecificStatsComponent
+    SpecificStatsComponent,
+    SourceStatsComponent
   ],
   imports: [
     BrowserModule,

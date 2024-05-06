@@ -1,11 +1,37 @@
 .container img {
-    min-height: 350px; // Establece una altura mínima para las imágenes
-    max-height: 500px; // Establece una altura máxima para evitar que las imágenes sean demasiado grandes en pantallas grandes
-    width: auto; // Mantiene la relación de aspecto original de las imágenes
-  }
-  
-  h3 {
-    color: #333;
-    font-weight: bold;
-  }
-  
+  min-height: 350px; /* Establece una altura mínima para las imágenes */
+  max-height: 500px; /* Establece una altura máxima para evitar que las imágenes sean demasiado grandes en pantallas grandes */
+  width: auto; /* Mantiene la relación de aspecto original de las imágenes */
+}
+
+h3 {
+  color: #333;
+  font-weight: bold;
+}
+
+.card {
+  margin-top: 40px; /* Espacio adicional en la parte superior */
+  margin-bottom: 40px; /* Espacio adicional en la parte inferior */
+  border-radius: 15px; /* Bordes redondeados, aumentado para más curvatura */
+  border: none; /* Eliminar el borde predeterminado */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
+}
+
+.card-body {
+  background-color: #f8f9fa; /* Color de fondo suave para el cuerpo de la tarjeta */
+}
+
+.card-title {
+  color: #007bff; /* Color principal para los títulos, ajusta al tema de tu app */
+  margin-bottom: 15px; /* Espacio debajo del título */
+}
+
+.list-group-item {
+  background-color: transparent; /* Fondo transparente para los elementos de la lista */
+  border: none; /* Sin bordes para los elementos de la lista */
+  padding-left: 20px; /* Espaciado para alinear texto dentro de la lista */
+}
+
+.list-group-item:not(:last-child) {
+  margin-bottom: 10px; /* Espacio entre elementos de la lista */
+}

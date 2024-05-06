@@ -1,4 +1,13 @@
 <div class="container mt-5">
+
+  <div class="card shadow-sm rounded-lg welcome-card text-center">
+    <div class="card-body">
+      <p class="card-text">Bienvenido a nuestra herramienta de análisis de texto. Aquí podrás analizar diferentes aspectos de tu texto como emociones, rasgos de personalidad, y más.</p>
+      <a href="/stats" class="btn btn-success">Ir a Estadísticas</a>
+    </div>
+  </div>
+  
+  <div class="text-entry-section">
     <div class="text-center mb-4">
       <h2>Escribe el texto a analizar</h2>
     </div>
@@ -9,22 +18,23 @@
       <button class="btn btn-primary" (click)="analyzeText()">Analizar</button>
     </div>
   </div>
-  <div class="container mt-4" *ngIf="analysisResults">
-    <div class="results mt-4">
-      <h4>Resultados del Análisis:</h4>
-      <div class="card mb-3" *ngIf="analysisResults.ekmanEmotion">
-        <div class="card-body">
-          <h5 class="card-title">Emoción de Ekman</h5>
-          <p class="card-text">{{ analysisResults.ekmanEmotion }}</p>
-        </div>
+</div>
+
+<!-- Área de resultados de análisis -->
+<div class="container mt-4" *ngIf="analysisResults">
+  <div class="results mt-4">
+    <div class="card mb-3" *ngIf="analysisResults.ekmanEmotion">
+      <div class="card-body">
+        <h5 class="card-title">Emoción de Ekman</h5>
+        <p class="card-text">{{ analysisResults.ekmanEmotion }}</p>
       </div>
-      <div class="card mb-3" *ngIf="analysisResults.personalityTrait">
-        <div class="card-body">
-          <h5 class="card-title">Rasgo de Personalidad</h5>
-          <p class="card-text">{{ analysisResults.personalityTrait }}</p>
-        </div>
-      </div>
-      <!-- Repite para otros resultados como sentiment, age, y gender -->
     </div>
+    <div class="card mb-3" *ngIf="analysisResults.personalityTrait">
+      <div class="card-body">
+        <h5 class="card-title">Rasgo de Personalidad</h5>
+        <p class="card-text">{{ analysisResults.personalityTrait }}</p>
+      </div>
+    </div>
+    <!-- Otros resultados omitidos para brevedad -->
   </div>
-  
+</div>

@@ -1,18 +1,20 @@
-/* styles.css o main-interface.component.css */
+/* Estilo para el contenedor general de la página */
 .container {
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
-  
-  .card {
-    margin-top: 20px;
-  }
-  
-  .form-control {
-    margin-bottom: 20px;
-  }
-  
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px; /* Asegurarse de que el margen superior sea suficiente */
+}
+
+/* Estilo específico para la tarjeta de bienvenida */
+.welcome-card {
+  margin-top: 20px; /* Espacio adicional en la parte superior de la primera tarjeta */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: none;
+  text-align: center; /* Centra el contenido de la tarjeta */
+}
+
+/* Estilo para la sección de entrada de texto */
+.text-entry-section {
+  margin-top: 60px; /* Aumento del espacio entre la tarjeta de bienvenida y la sección de texto */
+}

@@ -1,3 +1,10 @@
+<div class="container mt-5">
+  <!-- Nuevo rectángulo para texto y botón -->
+  <div class="intro-banner mb-4">
+    <p class="lead">Prueba el modelo detectos de textos y descubre si un texto es generado por humano o por máquina, y que sesgos tiene!</p>
+    <a href="" class="btn btn-success">Probar el detector</a>
+  </div>
+
 <div class="container">
     <h2>Estadísticas por Modelo</h2>
     <div class="row">
@@ -5,7 +12,7 @@
         <div class="card">
             <img [src]="model.imageUrl" class="card-img-top" alt="">
             <div class="card-body">
-              <button type="button" [routerLink]="['/stats', model.name]" class="btn btn-dark"> Ver {{ model.name }}</button>
+              <button type="button" [routerLink]="['/models', model.name]" class="btn btn-dark"> Ver {{ model.name }}</button>
             </div>
         </div>
       </div>
@@ -17,7 +24,19 @@
         <div class="card">
             <img [src]="source.imageUrl" class="card-img-top" alt="">
             <div class="card-body">
-              <button type="button" [routerLink]="['/stats', source.name]" class="btn btn-dark"> Ver {{ source.name }}</button>
+              <button type="button" [routerLink]="['/sources', source.name]" class="btn btn-dark"> Ver {{ source.name }}</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Comparación Humano - Máquina</h2>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card">
+            <img [src]="" class="card-img-top" alt="">
+            <div class="card-body">
+              <button type="button"  class="btn btn-dark"> Ver</button>
             </div>
         </div>
       </div>
