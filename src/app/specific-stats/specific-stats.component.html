@@ -1,4 +1,5 @@
 <div class="container text-center mt-5">
+  <button type="button" [routerLink]="['/stats']" class="btn btn-dark btn-block" >Volver</button>
   <h1 class="mb-4">Estadísticas para {{ modelName }}</h1>
   <div class="row">
     <ng-container *ngFor="let statType of statsTypes">

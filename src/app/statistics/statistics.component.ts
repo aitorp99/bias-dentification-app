@@ -10,12 +10,15 @@ interface Source {
   imageUrl: string;  
 }
 
+
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent implements OnInit {
+
+  humano_maquina_image: string = './assets/logos/humano_maquina.png';
 
   constructor() { }
 

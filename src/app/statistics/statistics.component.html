@@ -1,42 +1,48 @@
 <div class="container mt-5">
-  <!-- Nuevo rectángulo para texto y botón -->
-  <div class="intro-banner mb-4">
-    <p class="lead">Prueba el modelo detectos de textos y descubre si un texto es generado por humano o por máquina, y que sesgos tiene!</p>
-    <a href="" class="btn btn-success">Probar el detector</a>
+  <div class="card shadow-sm rounded-lg welcome-card text-center">
+    <div class="card-body">
+      <p class="card-text">Prueba el modelo detector de textos y descubre si un texto es generado por humano o por máquina, y qué sesgos tiene!</p>
+      <button type="button" [routerLink]="['']" class="btn btn-dark btn-block" >Probar el detector</button>
+    </div>
   </div>
+</div>
 
-<div class="container">
-    <h2>Estadísticas por Modelo</h2>
-    <div class="row">
+<div class="container mt-5 mx-auto">
+    <h2 class="text-center">Estadísticas por Modelo</h2>
+    <div class="row justify-content-center">
       <div class="col-md-2" *ngFor="let model of models">
         <div class="card">
             <img [src]="model.imageUrl" class="card-img-top" alt="">
             <div class="card-body">
-              <button type="button" [routerLink]="['/models', model.name]" class="btn btn-dark"> Ver {{ model.name }}</button>
+              <button type="button" [routerLink]="['/models', model.name]" class="btn btn-dark btn-block uniform-button">
+                Ver<br>{{ model.name }}
+              </button>
             </div>
         </div>
       </div>
     </div>
   
-    <h2>Estadísticas por Fuente</h2>
-    <div class="row">
+    <h2 class="text-center mt-5">Estadísticas por Fuente</h2>
+    <div class="row justify-content-center">
       <div class="col-md-2" *ngFor="let source of sources">
         <div class="card">
             <img [src]="source.imageUrl" class="card-img-top" alt="">
             <div class="card-body">
-              <button type="button" [routerLink]="['/sources', source.name]" class="btn btn-dark"> Ver {{ source.name }}</button>
+              <button type="button" [routerLink]="['/sources', source.name]" class="btn btn-dark btn-block uniform-button">
+                Ver<br>{{ source.name }}
+              </button>
             </div>
         </div>
       </div>
     </div>
 
-    <h2>Comparación Humano - Máquina</h2>
-    <div class="row">
-      <div class="col-md-2">
+    <h2 class="text-center mt-5">Comparación Humano - Máquina</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-10">
         <div class="card">
-            <img [src]="" class="card-img-top" alt="">
+            <img [src]="humano_maquina_image" class="card-img-top img-humano-maquina" alt="">
             <div class="card-body">
-              <button type="button"  class="btn btn-dark"> Ver</button>
+              <button type="button" class="btn btn-dark btn-block large-button">Ver</button>
             </div>
         </div>
       </div>

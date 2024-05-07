@@ -1,16 +1,37 @@
 .card {
-    height: 100%;  /* Makes all cards the same height within their grid column */
-  }
-  
-.card-img-top {
-    height: 200px;  /* Adjust as necessary to fit your design needs */
-    object-fit: cover;  /* Ensures the image covers the area without stretching */
+  height: 100%;  /* Makes all cards the same height within their grid column */
 }
+
 .card-img-top {
-    height: 200px;  /* Consistent height */
-    width: 100%;    /* Ensure the width always fills the card */
-    object-fit: contain;  /* Adjust based on preference */
-  }
-  
-  
-  
+  height: 200px;  /* Consistent height */
+  width: 100%;    /* Ensure the width always fills the card */
+  object-fit: contain;  /* Adjust based on preference */
+}
+.img-humano-maquina {
+  height: 200px; /* Asegura una altura consistente, ajusta según sea necesario */
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  object-fit: cover; /* Cubre el área completamente, puede cortar partes de la imagen */
+}
+
+
+.card-body {
+  padding: 1rem; /* Asegúrate de que este padding no sea demasiado grande */
+}
+
+.uniform-button {
+  width: 100%; /* Ocupa exactamente el ancho del cuerpo de la tarjeta */
+  min-height: 70px; /* Altura mínima para que todos los botones sean del mismo tamaño */
+  text-align: center; /* Asegura que el texto esté centrado */
+  margin: 0 auto; /* Centra el botón en caso de cualquier desajuste */
+  display: block; /* Asegura que el botón actúe como un bloque para llenar el espacio */
+  padding: 0; /* Elimina padding interno para evitar desplazamientos */
+}
+.large-button {
+  padding: 10px 0; /* Aumenta el padding para un botón más grande */
+  font-size: 1.2em; /* Hace el texto más grande */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  text-align: center; /* Centra el texto dentro del botón */
+  display: block; /* Fuerza al botón a comportarse como un bloque */
+  margin: 0 auto; /* Centra el botón dentro de su contenedor si fuera necesario */
+}
+

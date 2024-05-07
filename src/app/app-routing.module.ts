@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: MainInterfaceComponent },
   { path: 'stats', component: StatisticsComponent },
   { path: 'models/:modelName', component: SpecificStatsComponent },
-  { path: 'sources/:sourcelName', component: SourceStatsComponent }
+  { path: 'sources/:sourceName', component: SourceStatsComponent }
 
 ];
 

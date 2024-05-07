@@ -1,37 +1,62 @@
 .container img {
-  min-height: 350px; /* Establece una altura mínima para las imágenes */
-  max-height: 500px; /* Establece una altura máxima para evitar que las imágenes sean demasiado grandes en pantallas grandes */
-  width: auto; /* Mantiene la relación de aspecto original de las imágenes */
+  min-height: 350px;
+  max-height: 500px;
+  width: auto;
+  margin-bottom: 20px; /* Añadir espacio debajo de cada imagen */
 }
 
 h3 {
   color: #333;
   font-weight: bold;
+  margin-bottom: 10px; /* Aumentar espacio debajo del título de cada gráfica */
+}
+.container {
+  position: relative; /* Establece un posicionamiento relativo para posicionar otros elementos absolutamente dentro de este contenedor */
+  padding-top: 15px; /* Agrega un poco de espacio en la parte superior */
+  text-align: center; /* Centra el contenido textual dentro del contenedor */
+}
+
+.btn-dark.btn-block {
+  position: absolute; /* Posicionamiento absoluto para el botón */
+  left: 15px; /* Distancia desde el borde izquierdo */
+  top: 15px; /* Distancia desde el borde superior */
 }
 
 .card {
-  margin-top: 40px; /* Espacio adicional en la parte superior */
-  margin-bottom: 40px; /* Espacio adicional en la parte inferior */
-  border-radius: 15px; /* Bordes redondeados, aumentado para más curvatura */
-  border: none; /* Eliminar el borde predeterminado */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para dar profundidad */
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .card-body {
-  background-color: #f8f9fa; /* Color de fondo suave para el cuerpo de la tarjeta */
+  background-color: #f8f9fa;
 }
 
 .card-title {
-  color: #007bff; /* Color principal para los títulos, ajusta al tema de tu app */
-  margin-bottom: 15px; /* Espacio debajo del título */
+  color: black;
+  margin-bottom: 15px;
 }
 
 .list-group-item {
-  background-color: transparent; /* Fondo transparente para los elementos de la lista */
-  border: none; /* Sin bordes para los elementos de la lista */
-  padding-left: 20px; /* Espaciado para alinear texto dentro de la lista */
+  background-color: transparent;
+  border: none;
+  padding-left: 20px;
+  margin-bottom: 10px; /* Asegurar que el espacio entre elementos de lista se aplique */
+}
+/* CSS para el título principal */
+h1 {
+  margin-bottom: 50px; /* Aumentar el margen inferior para más espacio debajo del título */
 }
 
-.list-group-item:not(:last-child) {
-  margin-bottom: 10px; /* Espacio entre elementos de la lista */
+/* CSS para las columnas que contienen los tipos de estadísticas e imágenes */
+.col-md-6 {
+  margin-top: 10px; /* Aumentar el margen superior para cada columna de estadísticas */
 }
+
+/* CSS para la tarjeta que contiene observaciones y casos de uso */
+.card {
+  margin-top: 70px; /* Aumentar el espacio antes de la tarjeta de observaciones y casos de uso */
+}
+
