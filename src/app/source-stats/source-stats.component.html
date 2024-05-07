@@ -1,24 +1,33 @@
-<div class="container text-center mt-5">
-    <button type="button" [routerLink]="['/stats']" class="btn btn-dark btn-block" >Volver</button>
-    <h1 class="mb-4">Estadísticas para {{ sourceName }}</h1>
-    <div class="row">
-      <ng-container *ngFor="let statType of statsTypes">
-        <div class="col-md-6 mb-5">
-          <h3 class="mb-3">{{ shownStatsTypes[statType] }}</h3>
-          <img [src]="getImageUrl(statType)" alt="{{ shownStatsTypes[statType] }} statistics for {{ sourceName }}" class="img-fluid">
-        </div>
-      </ng-container>
+<div class="container mt-5">
+  <!-- Agrupar botón y logo para un control de disposición más fácil -->
+  <div class="top-bar">
+    <button type="button" [routerLink]="['/stats']" class="btn btn-dark" >Volver</button>
+    <img [src]="sourceData?.imageUrl" class="logo-img" alt="Logo de {{ sourceName }}">
+  </div>
+
+  <h1 class="mb-4 text-center">¿Qué es {{ sourceName }}?</h1>
+
+  <div class="card shadow-sm rounded-lg welcome-card text-center">
+    <div class="card-body">
+      <p class="card-text">{{ sourceData?.definition }}</p>
     </div>
-  
-    <div *ngIf="sourceData" class="mt-5">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h4 class="card-title text-primary">Observaciones</h4>
-          <p class="card-text">{{ sourceData.observations }}</p>
-          <h4 class="card-title text-primary">Casos de Uso</h4>
-        </div>
+  </div>
+  <h1 class="mb-4 text-center">Estadísticas para {{ sourceName }}</h1>
+  <div class="row">
+    <ng-container *ngFor="let statType of statsTypes">
+      <div class="col-md-6 mb-5">
+        <h3 class="mb-3 text-center">{{ shownStatsTypes[statType] }}</h3>
+        <img [src]="getImageUrl(statType)" alt="{{ shownStatsTypes[statType] }} statistics for {{ sourceName }}" class="img-fluid">
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf="sourceData" class="mt-5">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h4 class="card-title text-primary">Observaciones</h4>
+        <p class="card-text">{{ sourceData.observations }}</p>
       </div>
     </div>
-    
   </div>
-  
+</div>

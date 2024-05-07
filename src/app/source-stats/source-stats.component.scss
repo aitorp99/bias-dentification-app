@@ -1,0 +1,21 @@
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-dark {
+    padding: 10px 20px; /* Ajustar el tamaño del botón si es necesario */
+    margin-left: 15px; /* Asegurar que el botón esté alineado a la izquierda */
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+    margin-right: 15px; /* Asegurar que el logo esté alineado a la derecha */
+}
+
+.container {
+    position: relative; /* Permite el posicionamiento absoluto dentro de este contenedor */
+}

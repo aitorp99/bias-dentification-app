@@ -35,7 +35,7 @@ export class StatisticsComponent implements OnInit {
 
   sources: Source[] = [
     { name: 'Wikipedia', imageUrl: './assets/logos/wikipediaLogo.jpeg' },
-    { name: 'Wikihow', imageUrl: './assets/logos/wikiHowLogo.png' },
+    { name: 'Wikihow', imageUrl: './assets/logos/wikihowLogo.png' },
     { name: 'Peerread', imageUrl: './assets/logos/peerreadLogo.png' },
     { name: 'Reddit', imageUrl: './assets/logos/redditLogo.png' },
     { name: 'Arxiv', imageUrl: './assets/logos/arxivLogo.png' }
