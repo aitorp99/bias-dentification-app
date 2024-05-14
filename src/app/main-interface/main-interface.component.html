@@ -20,38 +20,30 @@
   </div>
 </div>
 
-<!-- Área de resultados de análisis -->
 <div class="container mt-4" *ngIf="analysisResults">
   <div class="results mt-4">
-    <div class="card mb-3" *ngIf="analysisResults.ekmanEmotion">
-      <div class="card-body">
-        <h5 class="card-title">Emoción de Ekman</h5>
-        <p class="card-text">{{ analysisResults.ekmanEmotion }}</p>
-      </div>
+    <div *ngIf="analysisResults.ekmanEmotion">
+      <h5>Emoción de Ekman</h5>
+      <div [chart]="barCharts[0]"></div>
+      <div [chart]="pieCharts[0]"></div>
     </div>
-    <div class="card mb-3" *ngIf="analysisResults.personalityTrait">
-      <div class="card-body">
-        <h5 class="card-title">Rasgo de Personalidad</h5>
-        <p class="card-text">{{ analysisResults.personalityTrait }}</p>
-      </div>
+    <div *ngIf="analysisResults.personalityTrait">
+      <h5>Rasgo de Personalidad</h5>
+      <div [chart]="barCharts[1]"></div>
+      <div [chart]="pieCharts[1]"></div>
     </div>
-    <div class="card mb-3" *ngIf="analysisResults.sentiment">
-      <div class="card-body">
-        <h5 class="card-title">Rasgo de Sentimiento</h5>
-        <p class="card-text">{{ analysisResults.sentiment }}</p>
-      </div>
+    <div *ngIf="analysisResults.sentiment">
+      <h5>Rasgo de Sentimiento</h5>
+      <div [chart]="barCharts[2]"></div>
+      <div [chart]="pieCharts[2]"></div>
     </div>
-    <div class="card mb-3" *ngIf="analysisResults.age">
-      <div class="card-body">
-        <h5 class="card-title">Rasgo de Edad</h5>
-        <p class="card-text">{{ analysisResults.age }}</p>
-      </div>
+    <div *ngIf="analysisResults.age">
+      <h5>Rasgo de Edad</h5>
+      <div [chart]="barCharts[3]"></div>
+      <div [chart]="pieCharts[3]"></div>
     </div>
-    <div class="card mb-3" *ngIf="analysisResults.gender">
-      <div class="card-body">
-        <h5 class="card-title">Rasgo de Género</h5>
-        <p class="card-text">{{ analysisResults.gender }}</p>
-      </div>
+    <div *ngIf="analysisResults.gender">
+      <h5>Rasgo de Género</h5>
+      <div [chart]="barCharts[4]"></div>
+      <div [chart]="pieCharts[4]"></div>
     </div>
-  </div>
-</div>
