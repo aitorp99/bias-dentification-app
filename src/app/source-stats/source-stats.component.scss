@@ -19,3 +19,15 @@
 .container {
     position: relative; /* Permite el posicionamiento absoluto dentro de este contenedor */
 }
+.welcome-card {
+    margin-bottom: 40px; /* Aumenta el margen inferior de la tarjeta de bienvenida para dar más espacio */
+}
+
+h1.text-center {
+    margin-top: 80px; /* Aumenta el margen superior para el título de estadísticas */
+    margin-bottom: 20px; /* Ajusta si es necesario para mantener la consistencia */
+}
+.stats-title {
+    margin-top: 60px; /* Espacio extra antes de las estadísticas */
+}
+

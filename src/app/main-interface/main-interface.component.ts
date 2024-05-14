@@ -31,77 +31,114 @@ export class MainInterfaceComponent implements OnInit {
   }
 
   analyzeText(): void {
-    this.analyzeEkmanEmotion(1, this.inputText);
-    this.analyzePersonality(1, this.inputText);
-    this.analyzeSentiment(1, this.inputText);
-    this.analyzeAge(1, this.inputText);
-    this.analyzeGender(1, this.inputText);
+    if (this.inputText.trim()) {  
+      this.analyzeEkmanEmotion('1', this.inputText, 'en');
+      this.analyzePersonality('1', this.inputText, 'en');
+      this.analyzeSentiment('1', this.inputText, 'en');
+      this.analyzeAge('1', this.inputText, 'en');
+      this.analyzeGender('1', this.inputText, 'en');
+    } else {
+      console.error('Input text is empty');
+      this.result = 'Please provide text for analysis.';
+    }
   }
 
-  analyzeEkmanEmotion(id: any, text: string): void {
-    this.analysisService.analyzeEkmanEmotion(id, text).subscribe({
+  analyzeEkmanEmotion(id: string, text: string, language: string): void {
+    this.analysisService.analyzeEkmanEmotion(id, text, language).subscribe({
       next: (response) => {
-        this.result = `Prediction: ${response.data[0].predictions[0].prediction}, Probability: ${response.data[0].predictions[0].probability}`;
-        console.log('Analysis completed:', this.result);
+        if (response.success && response.data) {
+          this.analysisResults.ekmanEmotion = response.data[0].prediction;
+          console.log('Ekman Emotion Analysis completed:', this.analysisResults.ekmanEmotion, 'with probability', response.data[0].probability);
+        } else {
+          console.error('Received unexpected response or no data:', response);
+          this.analysisResults.ekmanEmotion = 'No data received';
+        }
       },
       error: (error) => {
-        console.error('Error during analysis:', error);
-        this.result = 'Failed to analyze gender';
+        console.error('Error during Ekman Emotion analysis:', error);
+        this.analysisResults.ekmanEmotion = 'Analysis failed';
+      }
+    });
+  }
+  
+  analyzePersonality(id: string, text: string, language: string): void {
+    this.analysisService.analyzePersonality(id, text, language).subscribe({
+      next: (response) => {
+        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
+        if (response.success && response.data) {
+          this.analysisResults.personalityTrait = response.data[0].prediction;
+          console.log('Personality Analysis completed:', this.analysisResults.personalityTrait, 'with probability', response.data[0].probability);
+        } else {
+          console.error('Received unexpected response or no data:', response);
+          this.analysisResults.personalityTrait = 'No data received';
+        }
+      },
+      error: (error) => {
+        console.error('Error during Personality analysis:', error);
+        this.analysisResults.personalityTrait = 'Analysis failed';
+      }
+    });
+  }
+  
+  analyzeSentiment(id: string, text: string, language: string): void {
+    this.analysisService.analyzeSentiment(id, text, language).subscribe({
+      next: (response) => {
+        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
+        if (response.success && response.data) {
+          this.analysisResults.sentiment = response.data[0].prediction;
+          console.log('Sentiment Analysis completed:', this.analysisResults.sentiment, 'with probability', response.data[0].probability);
+        } else {
+          console.error('Received unexpected response or no data:', response);
+          this.analysisResults.sentiment = 'No data received';
+        }
+      },
+      error: (error) => {
+        console.error('Error during Sentiment analysis:', error);
+        this.analysisResults.sentiment = 'Analysis failed';
       }
     });
   }
 
-  analyzePersonality(id: any, text: string): void {
-    this.analysisService.analyzePersonality(id, text).subscribe({
+  
+
+  analyzeAge(id: string, text: string, language: string): void {
+    this.analysisService.analyzeAge(id, text, language).subscribe({
       next: (response) => {
-        this.result = `Prediction: ${response.data[0].predictions[0].prediction}, Probability: ${response.data[0].predictions[0].probability}`;
-        console.log('Analysis completed:', this.result);
+        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
+        if (response.success && response.data) {
+          this.analysisResults.age = response.data[0].prediction;
+          console.log('Age Analysis completed:', this.analysisResults.age, 'with probability', response.data[0].probability);
+        } else {
+          console.error('Received unexpected response or no data:', response);
+          this.analysisResults.age = 'No data received';
+        }
       },
       error: (error) => {
-        console.error('Error during analysis:', error);
-        this.result = 'Failed to analyze gender';
+        console.error('Error during Age analysis:', error);
+        this.analysisResults.age = 'Analysis failed';
       }
     });
   }
 
-  analyzeSentiment(id: any, text: string): void {
-    this.analysisService.analyzeSentiment(id, text).subscribe({
+  analyzeGender(id: string, text: string, language: string): void {
+    this.analysisService.analyzeGender(id, text, language).subscribe({
       next: (response) => {
-        this.result = `Prediction: ${response.data[0].predictions[0].prediction}, Probability: ${response.data[0].predictions[0].probability}`;
-        console.log('Analysis completed:', this.result);
+        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
+        if (response.success && response.data) {
+          this.analysisResults.gender = response.data[0].prediction;
+          console.log('Gender analysis completed:', this.analysisResults.gender, 'with probability', response.data[0].probability);
+        } else {
+          console.error('Received unexpected response or no data:', response);
+          this.analysisResults.gender = 'No data received';
+        }
       },
       error: (error) => {
-        console.error('Error during analysis:', error);
-        this.result = 'Failed to analyze gender';
+        console.error('Error during Gedner analysis:', error);
+        this.analysisResults.gender = 'Analysis failed';
       }
     });
   }
-
-  analyzeAge(id: any, text: string): void {
-    this.analysisService.analyzeAge(id, text).subscribe({
-      next: (response) => {
-        this.result = `Prediction: ${response.data[0].predictions[0].prediction}, Probability: ${response.data[0].predictions[0].probability}`;
-        console.log('Analysis completed:', this.result);
-      },
-      error: (error) => {
-        console.error('Error during analysis:', error);
-        this.result = 'Failed to analyze gender';
-      }
-    });
-  }
-
-  analyzeGender(id: any, text: string): void {
-    this.analysisService.analyzeGender(id, text).subscribe({
-      next: (response) => {
-        this.result = `Prediction: ${response.data[0].predictions[0].prediction}, Probability: ${response.data[0].predictions[0].probability}`;
-        console.log('Analysis completed:', this.result);
-      },
-      error: (error) => {
-        console.error('Error during analysis:', error);
-        this.result = 'Failed to analyze gender';
-      }
-    });
-  }
+  
 
   
 

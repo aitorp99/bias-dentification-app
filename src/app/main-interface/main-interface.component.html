@@ -35,5 +35,23 @@
         <p class="card-text">{{ analysisResults.personalityTrait }}</p>
       </div>
     </div>
+    <div class="card mb-3" *ngIf="analysisResults.sentiment">
+      <div class="card-body">
+        <h5 class="card-title">Rasgo de Sentimiento</h5>
+        <p class="card-text">{{ analysisResults.sentiment }}</p>
+      </div>
+    </div>
+    <div class="card mb-3" *ngIf="analysisResults.age">
+      <div class="card-body">
+        <h5 class="card-title">Rasgo de Edad</h5>
+        <p class="card-text">{{ analysisResults.age }}</p>
+      </div>
+    </div>
+    <div class="card mb-3" *ngIf="analysisResults.gender">
+      <div class="card-body">
+        <h5 class="card-title">Rasgo de Género</h5>
+        <p class="card-text">{{ analysisResults.gender }}</p>
+      </div>
+    </div>
   </div>
 </div>

@@ -43,7 +43,7 @@ export class SourceStatsComponent implements OnInit {
       name: 'Reddit',
       imageUrl: './assets/logos/redditLogo.png',
       observations: 'Predominantemente racional y neutro en emociones, con una fuerte inclinación hacia audiencias más adultas. Trás analizar las fuentes y los modelos, se llega a la conclusión de que es probalble que las siguientes fuentes hayan tenido un peso significante en el entrenamiento de cohere: Wikipedia y Arxiv, por su alto contenido racional y educativo, lo cual es ideal para entornos informativos.',
-      definition: 'Reddit es una plataforma de agregación de noticias y discusiones en línea, donde los usuarios pueden enviar contenido como enlaces, textos y fotos, los cuales posteriormente son votados por la comunidad. La plataforma está organizada en subforos conocidos como "subreddits", cada uno centrado en un tema específico, que va desde temas generales como noticias o tecnología hasta nichos muy específicos como hobbies o intereses particulares.'
+      definition: 'Reddit es una plataforma de publicación de noticias y discusiones en línea, donde los usuarios pueden enviar contenido como enlaces, textos y fotos, los cuales posteriormente son votados por la comunidad. La plataforma está organizada en subforos conocidos como "subreddits", cada uno centrado en un tema específico, que va desde temas generales como noticias o tecnología hasta nichos muy específicos como hobbies o intereses particulares.'
     },
     { 
       name: 'Wikihow',
