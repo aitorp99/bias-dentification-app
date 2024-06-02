@@ -10,6 +10,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { SpecificStatsComponent } from './specific-stats/specific-stats.component';
 import { SourceStatsComponent } from './source-stats/source-stats.component';
 import { ChartModule } from 'angular-highcharts';
+import { ComparisonStatsComponent } from './comparison-stats/comparison-stats.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ChartModule } from 'angular-highcharts';
     MainInterfaceComponent,
     StatisticsComponent,
     SpecificStatsComponent,
-    SourceStatsComponent
+    SourceStatsComponent,
+    ComparisonStatsComponent
   ],
   imports: [
     BrowserModule,

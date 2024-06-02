@@ -1,0 +1,25 @@
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col-12 text-left mb-3">
+            <button type="button" [routerLink]="['/stats']" class="btn btn-dark">Volver</button>
+        </div>
+    </div>
+    <h1 class="mb-4">Comparación de Textos Humanos vs Máquina</h1>
+    <div class="row">
+      <ng-container *ngFor="let statType of statsTypes">
+        <div class="col-md-6 mb-5">
+          <h3 class="mb-3">{{ shownStatsTypes[statType] }}</h3>
+          <img [src]="getImageUrl(statType)" alt="Comparación de {{ shownStatsTypes[statType] }}" class="img-fluid">
+        </div>
+      </ng-container>
+    </div>
+  
+    <div class="mt-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title text-primary">Observaciones</h4>
+          <p class="card-text">Los textos generados por máquina tienden a ser más neutrales y menos emocionales, mostrando una fuerte inclinación hacia una perspectiva racional y positiva. En contraste, los textos humanos presentan una mayor diversidad emocional y un equilibrio entre sentimientos positivos y negativos. En general, se observa que la distribución de los sesgos es similar en ambos tipos de textos. Sin embargo, las máquinas tienden a amplificar los rasgos predominantes de los textos humanos, haciendo que estos grupos estén más representados en los textos generados por IA.</p>
+        </div>
+      </div>
+    </div>
+</div>
