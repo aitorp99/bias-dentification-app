@@ -1,4 +1,4 @@
-# Aplicación de Identificación de Sesgos en textos generados por IA
+# Aplicación de Identificación de Sesgos
 
 Esta es una aplicación web desarrollada con Angular para la identificación de sesgos en textos. También se pueden encontrar estadísticas realizadas en el estudio sobre la identificación de sesgos en textos generados por IA, provenientes de distintos LLMs, como ChatGPT, Dolly, Davinci, Bloomz y Cohere. Así como los sesgos detectados para distintos fuentes como arXiv, peerread, Reddit, Wikihow y Wikipedia. También se muestra una comparativa entre los textos escritos por humano, y los generados por máquina.
 
