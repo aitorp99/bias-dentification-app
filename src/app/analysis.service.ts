@@ -13,7 +13,7 @@ export class AnalysisService {
   private getHeaders() {
     return new HttpHeaders({
       'Accept': 'application/json',
-      'x-api-key': '5ee3ddb6d2aa40aab37b309d876a64f3',
+      'x-api-key': 'xxx',
       'Content-Type': 'application/json'
     });
   }
