@@ -15,7 +15,7 @@ Sigue estos pasos para instalar y ejecutar la aplicación:
 1. **Clona el repositorio**:
 
     ```sh
-    git clone <https://github.com/aitorp99/bias-dentification-app.git>
+    git clone <https://github.com/aitorp99/bias-identification-app.git>
     ```
 
 2. **Instala las dependencias**:
