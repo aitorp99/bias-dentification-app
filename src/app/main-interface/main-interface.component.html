@@ -1,49 +1,81 @@
 <div class="container mt-5">
-
   <div class="card shadow-sm rounded-lg welcome-card text-center">
     <div class="card-body">
-      <p class="card-text">Bienvenido a nuestra herramienta de análisis de texto. Aquí podrás analizar diferentes aspectos de tu texto como emociones, rasgos de personalidad, y más.</p>
-      <button type="button" [routerLink]="['/stats']" class="btn btn-dark btn-block" >Ir a Estadísticas</button>
+      <p class="card-text">Bienvenido a la herramienta de análisis de texto. Aquí podrás analizar los sesgos de tu texto.</p>
+      <button type="button" [routerLink]="['/stats']" class="btn btn-dark btn-block">Ir a Estadísticas</button>
     </div>
   </div>
   
-  <div class="text-entry-section">
+  <div class="text-entry-section mt-4">
     <div class="text-center mb-4">
       <h2>Escribe el texto a analizar</h2>
     </div>
-    <div class="form-group">
+    <div class="form-group text-center mb-3">
+      <label for="languageSelect" class="mb-2">Selecciona el idioma:</label>
+      <div class="btn-group" role="group" aria-label="Selecciona el idioma">
+        <button type="button" class="btn" [ngClass]="{'btn-dark': selectedLanguage === 'en', 'btn-light': selectedLanguage !== 'en'}" (click)="selectLanguage('en')">Inglés</button>
+        <button type="button" class="btn" [ngClass]="{'btn-dark': selectedLanguage === 'es', 'btn-light': selectedLanguage !== 'es'}" (click)="selectLanguage('es')">Español</button>
+      </div>
+    </div>
+    <div class="form-group mb-3">
       <textarea class="form-control" id="textInput" rows="4" placeholder="Introduce aquí tu texto..." [(ngModel)]="inputText"></textarea>
     </div>
-    <div class="text-center">
+    <div class="text-center mb-4">
       <button class="btn btn-dark btn-block" (click)="analyzeText()">Analizar</button>
     </div>
   </div>
 </div>
 
-<div class="container mt-4" *ngIf="analysisResults">
+<div class="container mt-4" *ngIf="showCharts">
   <div class="results mt-4">
-    <div *ngIf="analysisResults.ekmanEmotion">
-      <h5>Emoción de Ekman</h5>
-      <div [chart]="barCharts[0]"></div>
-      <div [chart]="pieCharts[0]"></div>
+    <div class="row">
+      <div class="col-md-6 text-center" *ngIf="analysisResults.ekmanEmotion.length">
+        <h5>Emoción de Ekman</h5>
+        <div [chart]="barCharts[0]"></div>
+      </div>
+      <div class="col-md-6 text-center" *ngIf="analysisResults.age.length">
+        <h5>Rasgo de Edad</h5>
+        <div [chart]="barCharts[3]"></div>
+      </div>
     </div>
-    <div *ngIf="analysisResults.personalityTrait">
-      <h5>Rasgo de Personalidad</h5>
-      <div [chart]="barCharts[1]"></div>
-      <div [chart]="pieCharts[1]"></div>
+    <div class="row mt-4">
+      <div class="col-md-6 text-center" *ngIf="analysisResults.personalityTrait.length">
+        <h5>Rasgo de Personalidad</h5>
+        <div [chart]="pieCharts[1]"></div>
+      </div>
+      <div class="col-md-6 text-center" *ngIf="analysisResults.sentiment.length">
+        <h5>Rasgo de Sentimiento</h5>
+        <div [chart]="pieCharts[2]"></div>
+      </div>
     </div>
-    <div *ngIf="analysisResults.sentiment">
-      <h5>Rasgo de Sentimiento</h5>
-      <div [chart]="barCharts[2]"></div>
-      <div [chart]="pieCharts[2]"></div>
+    <div class="row mt-4">
+      <div class="col-12 text-center" *ngIf="analysisResults.gender.length">
+        <h5>Rasgo de Género</h5>
+        <div [chart]="pieCharts[4]"></div>
+      </div>
     </div>
-    <div *ngIf="analysisResults.age">
-      <h5>Rasgo de Edad</h5>
-      <div [chart]="barCharts[3]"></div>
-      <div [chart]="pieCharts[3]"></div>
+
+    <div *ngIf="result">
+      <p>{{ result }}</p>
     </div>
-    <div *ngIf="analysisResults.gender">
-      <h5>Rasgo de Género</h5>
-      <div [chart]="barCharts[4]"></div>
-      <div [chart]="pieCharts[4]"></div>
+    
+    <div *ngIf="joblib1Prediction !== null">
+      <h3>Joblib Model 1 Prediction</h3>
+      <p>{{ joblib1Prediction }}</p>
     </div>
+    
+    <div *ngIf="joblib2Prediction !== null">
+      <h3>Joblib Model 2 Prediction</h3>
+      <p>{{ joblib2Prediction }}</p>
+    </div>
+    
+    <div *ngIf="h5Prediction !== null">
+      <h3>H5 Model Prediction</h3>
+      <p>{{ h5Prediction }}</p>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center mt-5">
+  <p>Powered by Symanto</p>
+</footer>

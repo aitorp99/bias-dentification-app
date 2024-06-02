@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalysisService } from '../analysis.service';
-import { StatisticsComponent } from '../statistics/statistics.component';
+import { PredictionService } from '../prediction.service';
 import * as Highcharts from 'highcharts';
 import { Chart } from 'angular-highcharts';
 
@@ -18,6 +18,7 @@ interface AnalysisResults {
 })
 export class MainInterfaceComponent implements OnInit {
   public inputText: string = '';
+  public selectedLanguage: string = 'en'; // Default to English
   public result: string | null = null;
   public analysisResults: AnalysisResults = {
     ekmanEmotion: [],
@@ -26,10 +27,49 @@ export class MainInterfaceComponent implements OnInit {
     age: [],
     gender: []
   };
+  public joblib1Prediction: any = null;
+  public joblib2Prediction: any = null;
+  public h5Prediction: any = null;
+  public showCharts: boolean = false;
+
   barCharts: Chart[] = [];
   pieCharts: Chart[] = [];
+
+  // Diccionarios de traducción
+  private emotionTranslations: { [key: string]: string } = {
+    'fear': 'Miedo',
+    'anger': 'Ira',
+    'joy': 'Alegría',
+    'sadness': 'Tristeza',
+    'disgust': 'Asco',
+    'surprise': 'Sorpresa',
+    'no-emotion': 'Sin Emoción'
+  };
+
+  private personalityTranslations: { [key: string]: string } = {
+    'rational': 'Racional',
+    'emotional': 'Emocional'
+  };
+
+  private sentimentTranslations: { [key: string]: string } = {
+    'positive': 'Positivo',
+    'negative': 'Negativo'
+  };
+
+  private genderTranslations: { [key: string]: string } = {
+    'male': 'Masculino',
+    'female': 'Femenino'
+  };
+
+  private ageTranslations: { [key: string]: string } = {
+    '18-24': '18-24',
+    '25-34': '25-34',
+    '35-49': '35-49',
+    '50-xx': '50-xx'
+  };
   
-  constructor(private analysisService: AnalysisService) {}
+  constructor(private analysisService: AnalysisService, private predictionService: PredictionService) {}
+  
   ngOnInit(): void {
     // Inicializar gráficos vacíos
     for (let i = 0; i < 5; i++) {
@@ -41,11 +81,24 @@ export class MainInterfaceComponent implements OnInit {
           text: ''
         },
         xAxis: {
-          categories: []
+          categories: [],
+          labels: {
+            style: {
+              fontSize: '16px'
+            }
+          }
         },
         yAxis: {
           title: {
-            text: 'Probabilidad'
+            text: 'Probabilidad',
+            style: {
+              fontSize: '16px'
+            }
+          },
+          labels: {
+            style: {
+              fontSize: '16px'
+            }
           }
         },
         series: [{
@@ -62,6 +115,15 @@ export class MainInterfaceComponent implements OnInit {
         title: {
           text: ''
         },
+        plotOptions: {
+          pie: {
+            dataLabels: {
+              style: {
+                fontSize: '16px'
+              }
+            }
+          }
+        },
         series: [{
           type: 'pie',
           name: 'Probabilidad',
@@ -71,13 +133,18 @@ export class MainInterfaceComponent implements OnInit {
     }
   }
 
+  selectLanguage(language: string): void {
+    this.selectedLanguage = language;
+  }
+
   analyzeText(): void {
     if (this.inputText.trim()) {  
-      this.analyzeEkmanEmotion('1', this.inputText, 'en');
-      this.analyzePersonality('1', this.inputText, 'en');
-      this.analyzeSentiment('1', this.inputText, 'en');
-      this.analyzeAge('1', this.inputText, 'en');
-      this.analyzeGender('1', this.inputText, 'en');
+      this.showCharts = false;  // Reset showCharts to false before analysis
+      this.analyzeEkmanEmotion('1', this.inputText, this.selectedLanguage);
+      this.analyzePersonality('1', this.inputText, this.selectedLanguage);
+      this.analyzeSentiment('1', this.inputText, this.selectedLanguage);
+      this.analyzeAge('1', this.inputText, this.selectedLanguage);
+      this.analyzeGender('1', this.inputText, this.selectedLanguage);
     } else {
       console.error('Input text is empty');
       this.result = 'Please provide text for analysis.';
@@ -89,8 +156,9 @@ export class MainInterfaceComponent implements OnInit {
       next: (response) => {
         if (response.success && response.data) {
           this.analysisResults.ekmanEmotion = response.data[0].prediction;
-          this.updateCharts(response.data, 0);
+          this.updateCharts(this.translateData(response.data, this.emotionTranslations), 0);
           console.log('Ekman Emotion Analysis completed:', this.analysisResults.ekmanEmotion, 'with probability', response.data[0].probability);
+          this.checkShowCharts();
         } else {
           console.error('Received unexpected response or no data:', response);
           this.analysisResults.ekmanEmotion = [];
@@ -106,12 +174,11 @@ export class MainInterfaceComponent implements OnInit {
   analyzePersonality(id: string, text: string, language: string): void {
     this.analysisService.analyzePersonality(id, text, language).subscribe({
       next: (response) => {
-        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
         if (response.success && response.data) {
           this.analysisResults.personalityTrait = response.data[0].prediction;
-          this.updateCharts(response.data, 1);
-
+          this.updateCharts(this.translateData(response.data, this.personalityTranslations), 1);
           console.log('Personality Analysis completed:', this.analysisResults.personalityTrait, 'with probability', response.data[0].probability);
+          this.checkShowCharts();
         } else {
           console.error('Received unexpected response or no data:', response);
           this.analysisResults.personalityTrait = [];
@@ -127,11 +194,11 @@ export class MainInterfaceComponent implements OnInit {
   analyzeSentiment(id: string, text: string, language: string): void {
     this.analysisService.analyzeSentiment(id, text, language).subscribe({
       next: (response) => {
-        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
         if (response.success && response.data) {
           this.analysisResults.sentiment = response.data[0].prediction;
-          this.updateCharts(response.data, 2);
+          this.updateCharts(this.translateData(response.data, this.sentimentTranslations), 2);
           console.log('Sentiment Analysis completed:', this.analysisResults.sentiment, 'with probability', response.data[0].probability);
+          this.checkShowCharts();
         } else {
           console.error('Received unexpected response or no data:', response);
           this.analysisResults.sentiment = [];
@@ -144,16 +211,14 @@ export class MainInterfaceComponent implements OnInit {
     });
   }
 
-  
-
   analyzeAge(id: string, text: string, language: string): void {
     this.analysisService.analyzeAge(id, text, language).subscribe({
       next: (response) => {
-        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
         if (response.success && response.data) {
           this.analysisResults.age = response.data[0].prediction;
-          this.updateCharts(response.data, 3);
+          this.updateCharts(this.translateData(response.data, this.ageTranslations), 3);
           console.log('Age Analysis completed:', this.analysisResults.age, 'with probability', response.data[0].probability);
+          this.checkShowCharts();
         } else {
           console.error('Received unexpected response or no data:', response);
           this.analysisResults.age = [];
@@ -169,23 +234,39 @@ export class MainInterfaceComponent implements OnInit {
   analyzeGender(id: string, text: string, language: string): void {
     this.analysisService.analyzeGender(id, text, language).subscribe({
       next: (response) => {
-        // Asegúrate de que la respuesta contiene los datos esperados y que es exitosa
         if (response.success && response.data) {
           this.analysisResults.gender = response.data[0].prediction;
-          this.updateCharts(response.data, 4);
+          this.updateCharts(this.translateData(response.data, this.genderTranslations), 4);
           console.log('Gender analysis completed:', this.analysisResults.gender, 'with probability', response.data[0].probability);
+          this.checkShowCharts();
         } else {
           console.error('Received unexpected response or no data:', response);
           this.analysisResults.gender = [];
         }
       },
       error: (error) => {
-        console.error('Error during Gedner analysis:', error);
-        this.analysisResults.gender =[];
+        console.error('Error during Gender analysis:', error);
+        this.analysisResults.gender = [];
       }
     });
   }
   
+  checkShowCharts(): void {
+    if (this.analysisResults.ekmanEmotion.length &&
+        this.analysisResults.personalityTrait.length &&
+        this.analysisResults.sentiment.length &&
+        this.analysisResults.age.length &&
+        this.analysisResults.gender.length) {
+      this.showCharts = true;
+    }
+  }
+
+  translateData(data: { prediction: string, probability: number }[], translations: { [key: string]: string }): { prediction: string, probability: number }[] {
+    return data.map(d => ({
+      prediction: translations[d.prediction] || d.prediction,
+      probability: d.probability
+    }));
+  }
 
   updateCharts(data: { prediction: string, probability: number }[], chartIndex: number): void {
     const categories = data.map(d => d.prediction);
@@ -199,11 +280,24 @@ export class MainInterfaceComponent implements OnInit {
         text: 'Resultados'
       },
       xAxis: {
-        categories: categories
+        categories: categories,
+        labels: {
+          style: {
+            fontSize: '16px'
+          }
+        }
       },
       yAxis: {
         title: {
-          text: 'Probabilidad'
+          text: 'Probabilidad',
+          style: {
+            fontSize: '16px'
+          }
+        },
+        labels: {
+          style: {
+            fontSize: '16px'
+          }
         }
       },
       series: [{
@@ -220,6 +314,15 @@ export class MainInterfaceComponent implements OnInit {
       title: {
         text: 'Resultados'
       },
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            style: {
+              fontSize: '16px'
+            }
+          }
+        }
+      },
       series: [{
         type: 'pie',
         name: 'Probabilidad',
@@ -227,7 +330,4 @@ export class MainInterfaceComponent implements OnInit {
       }]
     });
   }
-
-  
-
 }

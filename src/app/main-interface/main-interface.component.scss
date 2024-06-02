@@ -18,3 +18,32 @@
 .text-entry-section {
   margin-top: 60px; /* Aumento del espacio entre la tarjeta de bienvenida y la sección de texto */
 }
+.btn-group .btn {
+  border: 1px solid #ccc;
+}
+
+.btn-group .btn-light {
+  background-color: #f8f9fa;
+}
+
+.btn-group .btn-dark {
+  background-color: #343a40;
+  color: white;
+}
+
+body, html {
+  height: 100%;
+}
+
+.container {
+  min-height: calc(100vh - 100px); /* Adjust as needed */
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  text-align: center;
+}
